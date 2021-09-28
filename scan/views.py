@@ -62,7 +62,7 @@ def index(request):
             context = {
                 "params":Parameters,
                 "totalcount":total,
-                "totalreq":total*2,
+                "totalreq":total,
             }
             return render(request, 'home.html', context)
         else:
