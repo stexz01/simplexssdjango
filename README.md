@@ -1,2 +1,1 @@
-# simplexssdjango
-Simple XSS Django Project
+# Simple XSS Django Project
