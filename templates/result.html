@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}
+  results
+{% endblock title %}
+{% block body %}
+{% if founds %}  
+  <br><br>
+  <div class="container">
+    <a href="/"><button type="button" class="btn btn-outline-secondary">Go Back</button></a>
+      <div class="card text-white bg-dark mb-3 my-1" style="max-width: 100rem;">
+        <div class="card-header" style="color:red; text-align:center;">Found : {{ foundcount }}</div>
+        <hr style="color: red;">
+            <div class="card-body">
+                {% for found in founds %}
+                <p class="card-text my-1 mx-1" style="color:red;">{{ forloop.counter }}.<a href="{{found}}" target="_blank" style="text-decoration: none; color:red;"> &nbsp;&nbsp;{{found}}</a></p>
+                {% endfor %}
+            </div>
+      </div>
+  </div>
+{% else %}
+<br><br>
+<div class="container">
+  <a href="/"><button type="button" class="btn btn-outline-secondary">Go Back</button></a>
+    <div class="card text-white bg-dark mb-3 my-1" style="max-width: 100rem;">
+      <hr style="color: red;">
+          <div class="card-body">
+              <p class="card-text my-1 mx-1" style="color:red; text-align:center;">nothing found.</p>
+          </div>
+    </div>
+</div>
+{% endif %}
+{% endblock body %}

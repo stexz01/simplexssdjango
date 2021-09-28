@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block title %}noob scan{% endblock title %}
+
+{% block body %}
+
+{% if not params %}
+
+<div class="container my-5">
+  <form class="d-flex" method="POST">
+    {% csrf_token %}
+      <input class="form-control me-2" name="search" type="search" placeholder="https://example.com" aria-label="Search">
+      <button class="btn btn-outline-danger" id="startSearch">Search</button>
+    </form>
+</div>
+
+<div class="container my-4">
+<div class="text-center" id="redSpinner">
+</div>
+</div>
+
+{% endif %}
+
+{% if params %}
+<br><br>
+<div class="container">
+  <div class="text-center" id="redSpinner2"></div>
+  <a href="/"><button type="button" class="btn btn-outline-secondary">Go Back</button></a>
+  <a href="/result"><button type="button" id="Attack" class="btn btn-outline-danger">Start Attack</button></a>
+    <div class="card text-white bg-dark mb-3 my-1" style="max-width: 100rem;">
+      <div class="card-header" style="color:red; text-align:center;">Parameters : {{ totalcount }} - Requests Size : {{totalreq}}</div>
+      <hr style="color: red;">
+          <div class="card-body">
+              {% for param in params %}
+              <p class="card-text my-1 mx-1" style="color:red;">{{ forloop.counter }}.<a href="{{param}}" target="_blank" style="text-decoration: none; color:red;"> &nbsp;&nbsp;{{param}}</a></p>
+              {% endfor %}
+          </div>
+    </div>
+</div>
+
+<script>
+  const attack = document.getElementById('Attack')
+attack.addEventListener('click', ()=>{
+  let spinner = document.getElementById('redSpinner2')
+  spinner.innerHTML = `<div class="spinner-border text-danger" style="width: 3rem; height: 3rem;" role="status"></div>`
+})
+</script>
+
+{% endif %}
+
+{% endblock body %}
